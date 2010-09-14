@@ -76,10 +76,8 @@ sub ooccase {
 			$lastChar = 1
 		}
 	}
-	my $deleted = 0;
 	foreach my $item(@del) {
-		delete $a[$item+$deleted];
-		$deleted++;
+		delete $a[$item];
 	}
 	my $new = myjoin(@a);
 	return ($new, "(" . $string . ")") if ($new ne $string);
@@ -94,7 +92,7 @@ while(<>){
 	if (/^\s*\/\//) {
 		#skipping comments.
 		print("$_\n");
-	} elsif (/^\s*(\w+\**) (\w*)\s+\(([\w|\*| |,|\.]*)\)\s*;/) {
+	} elsif (/^\s*(\w+\**)\s+(\w*)\s*\(([\w|\*| |,|\.]*)\)\s*;/) {
 		#searching function declararions
 		my $return = converttype($1);
 		#no need to declare void return type in ooc
