@@ -21,7 +21,10 @@ sub converttype {
 	$type =~ s/short/Short/;
 	$type =~ s/size_t/SizeT/;
 	$type =~ s/ssize_t/SSizeT/;
-	$type =~ s/ptrdiff_t/SSizeT/;	
+	$type =~ s/ptrdiff_t/SSizeT/;
+	$type =~ s/bool/Bool/;			
+	$type =~ s/ubyte/Octet/;		
+	$type =~ s/Char\*/CString/;		
 	
 	return $type;
 }
@@ -122,6 +125,7 @@ while(<>){
 				$counter++;
 			}
 			$args_braced .= ")";
+			$args_braced = "" if($args_braced eq "(Void)");
 		}
 		print("$funcname: extern$externname func$args_braced $return\n");
 	} elsif (/^\s*const\s+(\w+\**)\s+(\w+)\s*=\s*.+?;/) { 
